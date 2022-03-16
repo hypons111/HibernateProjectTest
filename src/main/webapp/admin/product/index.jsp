@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>PRODUCT INDEX PAGE</h1>
 </body>
 </html>
