@@ -12,7 +12,7 @@
 <body>
 
 	<div style="margin-top: 20px">
-	<form id="editForm" method="post" action="EditServlet"
+	<form id="editForm" method="post" action="/HibernateProject/admin/product/update"
 		enctype="multipart/form-data">
 		<table border="1">
 			<thead>

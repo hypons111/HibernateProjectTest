@@ -38,13 +38,18 @@ public class ProductDao implements IProductDao {
 		Query<Product> result = session.createQuery("from Product", Product.class);
 		return result.list();
 	}
-
+	
 	@Override
-	public Product update(int id, String name) {
+	public Product update(int id, String name, String type, int stock, double cost, double price, String Description) {
 		System.out.println("ProductDao: update");
 		Product result = session.get(Product.class, id);
 		if (result != null) {
 			result.setP_Name(name);
+			result.setP_Type(type);
+			result.setP_Stock(stock);
+			result.setP_Cost(cost);
+			result.setP_Price(price);
+			result.setP_Description(Description);
 		}
 		return result;
 	}

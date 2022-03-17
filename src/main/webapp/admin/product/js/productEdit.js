@@ -1,23 +1,30 @@
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
-const targetID = urlParams.get('id')
-const BASE_URL = "http://localhost:8080/HibernateProject/admin/product/index"
+const targetID = urlParams.get('P_ID')
+const PRODUCT_URL = "http://localhost:8080/HibernateProject/admin/product/index"
+const PRODUCT_TYPE_URL = "http://localhost:8080/HibernateProject/admin/product/type/index"
 const typeList = ["MEAT", "VEGE", "BEVE"]
-const supplierList = ["悠活農村", "菜鮮生", "新鮮屋", "天天蔬菜箱", "GO蔬菜箱"]
 const columnList = ["產品種類", "產品供應商", "產品編號", "產品名稱", "產品存量", "產品買價", "產品售價", "產品圖片"]
 
-let rawData = []
+let productRawData = []
+let productTypeRawData = []
 let oldProductName = ""
 
-axios.get(BASE_URL)
+axios.get(PRODUCT_TYPE_URL)
 	.then(response => {
-		showData(...getTargetProduct(response.data))
+		productTypeRawData = response.data
+	})
+	.catch(error => { console.log(error) })
+
+axios.get(PRODUCT_URL)
+	.then(response => {
+		showData(getTargetProduct(response.data))
 		addEventListeners(response.data)
 	})
 	.catch(error => { console.log(error) })
 
-function getTargetProduct(rawData) {
-	return rawData.filter(product => product.P_ID == targetID)
+function getTargetProduct(productRawData) {
+	return productRawData.find(product => product.P_ID == targetID)
 }
 
 function showData(data) {
@@ -32,13 +39,14 @@ function showData(data) {
 	contents += "<td><button id='button'>修改</button></td>"
 	contents += "<td><button>取消</button></td>"
 	resultTable.innerHTML = contents
-	oldProductName = data.name
+	oldProductName = data.P_Name
 }
 
 function addEventListeners(data) {
 	const inputs = document.querySelectorAll("table input")
 
 	document.querySelector("#id").addEventListener("click", () => {
+		event.preventDefault()
 		alert("產品編號不能更改")
 	})
 
@@ -52,29 +60,16 @@ function addEventListeners(data) {
 		}
 	})
 
-	for (let i = 0; i < inputs.length - 2; i++) {
-		if (i === 0) {
-			inputs[i].addEventListener("mousedown", event => {
-				let typeContent = "<select id='type' class='input' name='type'>"
-				for (let j = 0; j < typeList.length; j++) {
-					typeContent += "<option value='" + typeList[j] + "'>" + typeList[j] + "</option>"
-				}
-				typeContent += "</select>"
-				event.target.parentElement.innerHTML = typeContent
-			})
+
+	inputs[0].addEventListener("mousedown", event => {
+		let typeContent = "<select id='type' class='input' name='type'>"
+		for (let j = 0; j < productTypeRawData.length; j++) {
+			typeContent += "<option value='" + productTypeRawData[j].PT_Name + "'>" + productTypeRawData[j].PT_Name + "</option>"
 		}
-		if (i === 1) {
-			inputs[i].addEventListener("mousedown", event => {
-				let supplierContent = "<select id='supplier' class='input' name='supplier'>"
-				for (let k = 0; k < supplierList.length; k++) {
-					supplierContent += "<option value='" + supplierList[k] + "'>" + supplierList[k] + "</option>"
-				}
-				supplierContent += "</select>"
-				event.target.parentElement.innerHTML = supplierContent
-				alert(event.target.parentElement.innerHTML)
-			})
-		}
-	}
+		typeContent += "</select>"
+		event.target.parentElement.innerHTML = typeContent
+	})
+
 
 
 
