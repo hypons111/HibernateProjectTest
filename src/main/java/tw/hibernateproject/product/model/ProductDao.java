@@ -17,6 +17,7 @@ public class ProductDao implements IProductDao {
 
 	@Override
 	public Product insert(Product product) {
+		System.out.println("ProductDao: insert");
 		Product houseResult = session.get(Product.class, product.getP_ID());
 		if (houseResult == null) {
 			session.save(product);
@@ -27,19 +28,20 @@ public class ProductDao implements IProductDao {
 
 	@Override
 	public Product selectByID(int id) {
+		System.out.println("ProductDao: selectByID");
 		return session.get(Product.class, id);
 	}
 
 	@Override
 	public List<Product> selectAll() {
-		System.out.println("selectAll");
+		System.out.println("ProductDao: selectAll");
 		Query<Product> result = session.createQuery("from Product", Product.class);
-		System.out.println(result.list().size());
 		return result.list();
 	}
 
 	@Override
 	public Product update(int id, String name) {
+		System.out.println("ProductDao: update");
 		Product result = session.get(Product.class, id);
 		if (result != null) {
 			result.setP_Name(name);
@@ -50,6 +52,7 @@ public class ProductDao implements IProductDao {
 	@Override
 	public boolean delete(int id) {
 		Product result = session.get(Product.class, id);
+		System.out.println("ProductDao: delete: " + result);
 		if (result != null) {
 			session.delete(result);
 			return true;

@@ -20,32 +20,22 @@ import tw.hibernateproject.util.HibernateUtil;
 public class AdminProductDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processAction(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processAction(request, response);
 	}
 
 	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
-
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-
+		int id = Integer.parseInt(request.getParameter("P_ID"));
+		
 		// 把 hibernate 的方法包在 DAO 裡面再包在 service 裡面
 		ProductService service = new ProductService(session);
-		Product resultBean = service.selectByID(1001);
-
-		if (resultBean != null) {
-			out.write(resultBean.getP_ID() + " " + resultBean.getP_Name() + "<br/>");
-		} else {
-			out.write("No Result");
-		}
-		out.close();
+		service.delete(id);
+		response.sendRedirect("index.jsp");
 	}
 }

@@ -98,8 +98,8 @@ function showData(data) {
 		contents += "<td>" + data[i].P_Cost + "</td>"
 		contents += "<td>" + data[i].P_Price + "</td>"
 		contents += "<td><img src='/images/product/" + data[i].P_Image + "?" + Math.random() + "' width='50px'></td>"
-		contents += "<td><a href=updateform.jsp?id=" + data[i].P_ID + "><button>修改</button></a></td>"
-		contents += "<td><a href=AdminProductDelete?id=" + data[i].P_ID + "><button>刪除</button></a></td></tr>"
+		contents += "<td><a href=updateform.jsp?P_ID=" + data[i].P_ID + "><button>修改</button></a></td>"
+		contents += "<td><a href=delete?P_ID=" + data[i].P_ID + "><button>刪除</button></a></td></tr>"
 	}
 	resultTable.innerHTML = contents
 }
