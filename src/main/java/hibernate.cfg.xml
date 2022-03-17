@@ -12,6 +12,7 @@
         <property name="hibernate.current_session_context_class">thread</property>
         
         <mapping class="tw.hibernateproject.member.model.Member" />
+        <mapping class="tw.hibernateproject.product.model.Product" />
         
     </session-factory>
 </hibernate-configuration>
