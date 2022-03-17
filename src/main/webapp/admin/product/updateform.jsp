@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form id="editForm" method="post" action="/HibernateProject/admin/product/update" enctype="multipart/form-data">
+	<form id="editForm" method="post" action="update" enctype="multipart/form-data">
 		<table border="1">
 			<thead>
 				<tr>
