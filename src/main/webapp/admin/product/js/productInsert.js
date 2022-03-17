@@ -6,30 +6,42 @@ const type = document.querySelector("#type")
 const submit = document.querySelector("#submit")
 const inputs = document.querySelectorAll(".input")
 const submitResult = document.querySelector("#submitResult")
-const BASE_URL = "http://localhost:8080/HibernateProject/admin/product/index"
-let rawData = []
+const PRODUCT_URL = "http://localhost:8080/HibernateProject/admin/product/index"
+const PRODUCT_TYPE_URL = "http://localhost:8080/HibernateProject/admin/product/type/index"
+let productRawData = []
+let productTypeRawData = []
+
+axios.get(PRODUCT_TYPE_URL)
+	.then(response => {
+		productTypeRawData = response.data
+		setTypePullDownMenu(productTypeRawData)
+	})
+	.catch(error => { console.log(error) })
+
 
 axios
-	.get(BASE_URL)
+	.get(PRODUCT_URL)
 	.then((response) => {
-		rawData = response.data
+		productRawData = response.data
 	})
 	.catch((err) => console.log(err));
 
 
-form.addEventListener("change", () => {
-	if (type.value !== "" && supplier.value !== "") {
-		id.value = idGenerator()
-	}
-})
+function setTypePullDownMenu(data) {
+	let contents = ""
+	data.forEach(type => {
+		contents += `<option value='${type.PT_Name}'>${type.PT_Name}</option>`
+	})
+	type.innerHTML = contents
 
+}
 
 name.addEventListener("change", () => {
-	for (let i = 0; i < rawData.length; i++) {
-		if (rawData[i].name.toLowerCase() === name.value.trim().toLowerCase()) {
+	for (let i = 0; i < productRawData.length; i++) {
+		if (productRawData[i].P_Name.toLowerCase() === name.value.trim().toLowerCase()) {
 			alert("已有同名稱產品")
 			name.value = ""
-			i = rawData.length
+			i = productRawData.length
 		}
 	}
 })
@@ -37,7 +49,7 @@ name.addEventListener("change", () => {
 form.addEventListener("submit", (event) => {
 	let switcher = "on"
 	submitResult.innerText = ""
-	
+
 	inputs.forEach(input => {
 		if (input.value.trim() == "") {
 			switcher = "off"
@@ -46,14 +58,9 @@ form.addEventListener("submit", (event) => {
 		}
 	})
 
-	for (let i = 4; i < inputs.length - 1; i++) {
-		if (inputs[i].value.trim().length == 0) {
-			switcher = "off"
-			event.preventDefault()
-			submitResult.innerHTML += inputs[i].previousElementSibling.innerText + "不可空白" + "<br>"
-		}
-		if (i === 4) {
-			if(inputs[i].value.match(/\./)) {
+	for (let i = 2; i < inputs.length - 1; i++) {
+		if (i === 2) {
+			if (inputs[i].value.match(/\./)) {
 				switcher = "off"
 				event.preventDefault()
 				submitResult.innerHTML += inputs[i].previousElementSibling.innerText + "只可輸入整數" + "<br>"
@@ -66,31 +73,17 @@ form.addEventListener("submit", (event) => {
 			event.preventDefault()
 			submitResult.innerHTML += inputs[i].previousElementSibling.innerText + "只可輸入數字" + "<br>"
 		}
-		if(inputs[i].value.match("..")) {
+		if (inputs[i].value.match("..")) {
 			inputs[i].value = inputs[i].value.replace("..", ".")
 		}
 	}
 	if (switcher === "on") {
+
+
+		inputs.forEach(input => {
+			console.log(input.value)
+		})
+
 		event.currentTarget.submit()
 	}
 })
-
-function idGenerator() {
-	str = ""
-	let d = new Date();
-	const arr = [
-		d.getFullYear().toString().substring(2, 4),
-		d.getMonth() + 1,
-		d.getDate(),
-		d.getHours(),
-		d.getMinutes(),
-		d.getSeconds()]
-	for (let i = 0; i < 6; i++) {
-		if (arr[i].toString().length < 2) {
-			str += "0" + arr[i].toString()
-		} else {
-			str += arr[i].toString()
-		}
-	}
-	return str
-}

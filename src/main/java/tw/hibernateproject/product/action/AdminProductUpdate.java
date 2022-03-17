@@ -45,7 +45,6 @@ public class AdminProductUpdate extends HttpServlet {
 			String newImageName = image.getSubmittedFileName();
 			if (newImageName != "") {
 				for (Part part : request.getParts()) {
-//					part.write("C:\\workspace0127\\SecondProjectDemoTest\\images\\product\\" + id + ".jpg");
 					part.write("C:/DataSource/workspace/HibernateProjectTest/src/main/webapp/admin/images/product/" + id + ".jpg");				
 				}
 			}
@@ -53,9 +52,6 @@ public class AdminProductUpdate extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-
-
-
 		// 把 hibernate 的方法包在 DAO 裡面再包在 service 裡面
 		ProductService service = new ProductService(session);
 		service.update(id, name, type, stock, cost, price, "hahaha");

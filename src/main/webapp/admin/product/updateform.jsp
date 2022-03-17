@@ -2,7 +2,8 @@
 <%@ page import="java.util.List"%>
 <%@ page import="tw.hibernateproject.product.model.Product"%>
 <%@ page import="com.google.gson.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,17 +11,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<div style="margin-top: 20px">
-	<form id="editForm" method="post" action="/HibernateProject/admin/product/update"
-		enctype="multipart/form-data">
+	<form id="editForm" method="post" action="/HibernateProject/admin/product/update" enctype="multipart/form-data">
 		<table border="1">
 			<thead>
 				<tr>
 					<th>產品種類</th>
 					<th>產品編號</th>
 					<th>產品名稱</th>
-					<th>產品進貨量</th>
+					<th>產品存量</th>
 					<th>產品買價</th>
 					<th>產品售價</th>
 					<th>產品圖片</th>

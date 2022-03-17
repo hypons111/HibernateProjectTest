@@ -1,5 +1,6 @@
 package tw.hibernateproject.product.model;
 
+import java.io.File;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -18,8 +19,8 @@ public class ProductDao implements IProductDao {
 	@Override
 	public Product insert(Product product) {
 		System.out.println("ProductDao: insert");
-		Product houseResult = session.get(Product.class, product.getP_ID());
-		if (houseResult == null) {
+		Product productResult = session.get(Product.class, product.getP_ID());
+		if (productResult == null) {
 			session.save(product);
 			return product;
 		}
@@ -60,6 +61,8 @@ public class ProductDao implements IProductDao {
 		System.out.println("ProductDao: delete: " + result);
 		if (result != null) {
 			session.delete(result);
+			File image = new File("C:/DataSource/workspace/HibernateProjectTest/src/main/webapp/admin/images/product/" + result.getP_Image());
+			image.delete();
 			return true;
 		}
 		return false;

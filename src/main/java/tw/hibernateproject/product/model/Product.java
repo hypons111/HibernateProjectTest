@@ -40,7 +40,7 @@ public class Product implements Serializable {
 
 	public Product() {}
 
-	public Product(int id, String name, String type, int stock, double cost, double price, String image) {
+	public Product(int id, String name, String type, int stock, double cost, double price, String image, String description) {
 		this.P_ID = id;
 	    this.P_Name = name;
 	    this.P_Type = type;
@@ -48,6 +48,17 @@ public class Product implements Serializable {
 	    this.P_Cost = cost;
 	    this.P_Price = price;
 	    this.P_Image = image;
+	    this.P_Description =  description;
+	}
+	
+	public Product(int id,String p_Name, String p_Type, int p_Stock, double p_Cost, double p_Price, String p_Description) {
+		this.P_ID = id;
+		P_Name = p_Name;
+		P_Type = p_Type;
+		P_Stock = p_Stock;
+		P_Cost = p_Cost;
+		P_Price = p_Price;
+		P_Description = p_Description;
 	}
 
 	public int getP_ID() {

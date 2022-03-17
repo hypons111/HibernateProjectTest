@@ -23,8 +23,8 @@ axios.get(PRODUCT_URL)
 	})
 	.catch(error => { console.log(error) })
 
-function getTargetProduct(productRawData) {
-	return productRawData.find(product => product.P_ID == targetID)
+function getTargetProduct(data) {
+	return data.find(product => product.P_ID == targetID)
 }
 
 function showData(data) {

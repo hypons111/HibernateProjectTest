@@ -20,14 +20,6 @@ import tw.hibernateproject.util.HibernateUtil;
 public class AdminProductDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processAction(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processAction(request, response);
-	}
-
 	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
@@ -38,4 +30,14 @@ public class AdminProductDelete extends HttpServlet {
 		service.delete(id);
 		response.sendRedirect("index.jsp");
 	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processAction(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processAction(request, response);
+	}
+
+
 }
