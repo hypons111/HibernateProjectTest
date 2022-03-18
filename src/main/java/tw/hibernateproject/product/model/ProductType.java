@@ -1,13 +1,13 @@
 package tw.hibernateproject.product.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity @Table(name = "ProductType")
 public class ProductType implements Serializable {
@@ -19,7 +19,7 @@ public class ProductType implements Serializable {
 	
 	@Column(name = "PT_Name")
 	private String PT_Name;
-
+	
 	public ProductType() {}
 
 	public ProductType(int id, String name, String type, int stock, double cost, double price, String image) {
@@ -46,7 +46,6 @@ public class ProductType implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 }
 	
 	

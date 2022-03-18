@@ -44,7 +44,7 @@ public class ProductTypeDao implements IProductTypeDao {
 		System.out.println("ProductTypeDao: update");
 		ProductType result = session.get(ProductType.class, id);
 		if (result != null) {
-			result.setPT_Name(name);
+//			result.setPT_Name(name);
 		}
 		return result;
 	}

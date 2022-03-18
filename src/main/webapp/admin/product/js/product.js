@@ -8,31 +8,6 @@ let currentData = []
 let rawData = ""
 let sortStates = "ASC"
 
-
-
-function ultimateSearch() {
-	let tempData = rawData
-	const KEY = ["", "P_ID", "", "P_Stock", "P_Cost", "P_Price", ]
-	for (let k = 0; k < columnSearchInputs.length; k++) {
-		if (columnSearchInputs[k].value !== "") {
-			if (k === 0) {
-				tempData = tempData.filter(product => product.P_Type.toLowerCase().includes(columnSearchInputs[0].value))
-			} else if (k === 2) {
-				tempData = tempData.filter(product => product.P_Name.includes(columnSearchInputs[2].value))
-			} else {
-				if (columnSearchInputs[k].value.includes("<")) {
-					tempData = tempData.filter(product => product[KEY[k]] < Number(columnSearchInputs[k].value.slice(1)))
-				} else if (columnSearchInputs[k].value.includes(">")) {
-					tempData = tempData.filter(product => product[KEY[k]] > Number(columnSearchInputs[k].value.slice(1)))
-				} else {
-					tempData = tempData.filter(product => product[KEY[k]] == Number(columnSearchInputs[k].value.slice(1)))
-				}
-			}
-		}
-	}
-	return tempData
-}
-
 axios
 	.get(BASE_URL)
 	.then(response => {
@@ -109,3 +84,25 @@ function showData(data) {
 	resultTable.innerHTML = contents
 }
 
+function ultimateSearch() {
+	let tempData = rawData
+	const KEY = ["", "P_ID", "", "P_Stock", "P_Cost", "P_Price", ]
+	for (let k = 0; k < columnSearchInputs.length; k++) {
+		if (columnSearchInputs[k].value !== "") {
+			if (k === 0) {
+				tempData = tempData.filter(product => product.P_Type.toLowerCase().includes(columnSearchInputs[0].value))
+			} else if (k === 2) {
+				tempData = tempData.filter(product => product.P_Name.includes(columnSearchInputs[2].value))
+			} else {
+				if (columnSearchInputs[k].value.includes("<")) {
+					tempData = tempData.filter(product => product[KEY[k]] < Number(columnSearchInputs[k].value.slice(1)))
+				} else if (columnSearchInputs[k].value.includes(">")) {
+					tempData = tempData.filter(product => product[KEY[k]] > Number(columnSearchInputs[k].value.slice(1)))
+				} else {
+					tempData = tempData.filter(product => product[KEY[k]] == Number(columnSearchInputs[k].value.slice(1)))
+				}
+			}
+		}
+	}
+	return tempData
+}

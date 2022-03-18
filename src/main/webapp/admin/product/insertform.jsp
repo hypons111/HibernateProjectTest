@@ -12,7 +12,7 @@
 </head>
 <body>
 	<form id="insert" method="post" action="insert" enctype="multipart/form-data">
-		<p><label>產品種類</label><select id="type" class="input" name="type"></select></p>
+		<p><label>產品種類</label><select style='width:177px; height:22px' id="type" class="input" name="type"><option></option></select></p>
 		<p><label>產品名稱</label><input id="name" class="input" type="text" name="name"></p>
 		<p><label>產品存量</label><input id="stock" class="input" type="text" name="stock"></p>
 		<p><label>產品買價</label><input id="cost" class="input" type="text" name="cost"></p>

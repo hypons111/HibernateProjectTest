@@ -32,8 +32,9 @@ public class AdminProductIndex extends HttpServlet {
 		ProductService service = new ProductService(session);
 		List<Product> resultList = service.selectAll();
 		Gson gson = new Gson();
+		
 		String jsonString = gson.toJson(resultList);
-		out.print(jsonString);
+		out.print(resultList);
 		out.close();
 	}
 	

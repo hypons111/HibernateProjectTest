@@ -14,7 +14,7 @@ let productTypeRawData = []
 axios.get(PRODUCT_TYPE_URL)
 	.then(response => {
 		productTypeRawData = response.data
-		setTypePullDownMenu(productTypeRawData)
+		setTypePullDownMenuListener(productTypeRawData)
 	})
 	.catch(error => { console.log(error) })
 
@@ -27,13 +27,23 @@ axios
 	.catch((err) => console.log(err));
 
 
-function setTypePullDownMenu(data) {
-	let contents = ""
-	data.forEach(type => {
-		contents += `<option value='${type.PT_Name}'>${type.PT_Name}</option>`
-	})
-	type.innerHTML = contents
+type.addEventListener("mouseup", event => {
+	if(event.target.value === "-------新增-------") {
+		type.parentElement.innerHTML = "<label>產品種類</label><input id='type' class='input' type='text' name='type'>"
+	}
+})
 
+
+function setTypePullDownMenuListener(data) {
+	type.addEventListener("click", event => {
+		if (type.innerText === "") {
+			let contents = ""
+			data.forEach(type => {
+				contents += `<option value='${type.PT_Name}'>${type.PT_Name}</option>`
+			})
+			type.innerHTML = contents
+		}
+	})
 }
 
 name.addEventListener("change", () => {
