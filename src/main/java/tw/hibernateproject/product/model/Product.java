@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 
 @Entity @Table(name = "Product")
 public class Product implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
 
 	@Id @Column(name = "P_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -133,6 +133,18 @@ public class Product implements Serializable {
 
 	public void setP_Description(String p_Description) {
 		P_Description = p_Description;
+	}
+	
+	public ProductType getProductType() {
+		return productType;
+	}
+
+	public void setProductType(ProductType productType) {
+		this.productType = productType;
+	}
+
+	public static void setSerialversionuid(long serialversionuid) {
+		serialVersionUID = serialversionuid;
 	}
 
 	public static long getSerialversionuid() {
