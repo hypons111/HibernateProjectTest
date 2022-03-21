@@ -4,14 +4,18 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity @Table(name = "Product")
 public class Product implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
 
 	@Id @Column(name = "P_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +24,8 @@ public class Product implements Serializable {
 	@Column(name = "P_Name")
 	private String P_Name;
 	
-	@Column(name = "P_Type")
+//	@Column(name = "P_Type")
+	@Transient
 	private String P_Type;
 	
 	@Column(name = "P_Stock")
@@ -38,6 +43,10 @@ public class Product implements Serializable {
 	@Column(name = "P_Description")
 	private String P_Description;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PT_ID")
+	private ProductType productType;
+	
 	public Product() {}
 
 	public Product(int id, String name, String type, int stock, double cost, double price, String image, String description) {
@@ -127,6 +136,18 @@ public class Product implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public ProductType getProductType() {
+		return productType;
+	}
+
+	public void setProductType(ProductType productType) {
+		this.productType = productType;
+	}
+
+	public static void setSerialversionuid(long serialversionuid) {
+		serialVersionUID = serialversionuid;
 	}
 	
 	
