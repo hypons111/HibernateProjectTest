@@ -5,6 +5,7 @@ import org.hibernate.Session;
 
 import tw.hibernateproject.product.model.Product;
 import tw.hibernateproject.product.model.ProductDao;
+import tw.hibernateproject.product.model.ProductType;
 
 
 public class ProductService implements IProductService  {
@@ -15,7 +16,7 @@ public class ProductService implements IProductService  {
 		System.out.println("ProductService");
 		productDao = new ProductDao(session);
 	}
-	
+
 	@Override
 	public Product insert(Product product) {
 		return productDao.insert(product);

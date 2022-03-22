@@ -3,9 +3,10 @@ package tw.hibernateproject.product.service;
 import java.util.List;
 
 import tw.hibernateproject.product.model.Product;
+import tw.hibernateproject.product.model.ProductType;
 
 public interface IProductService {
-
+	
 	Product insert(Product product);
 
 	Product selectByID(int id);

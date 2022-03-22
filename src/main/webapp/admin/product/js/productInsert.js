@@ -27,13 +27,22 @@ axios
 	.catch((err) => console.log(err));
 
 
+type.addEventListener('mouseup', event => {
+	if(event.target.value === "-------新增-------") {
+		event.target.parentElement.innerHTML = `<label>產品種類</label><input id="type" class="input" type="text" name="type">`
+	}
+})
+
+
 function setTypePullDownMenu(data) {
 	let contents = ""
+//	for(let i=0; i<data.length; i++) {
+//		contents += `<option value='${i+1}'>${data[i].PT_Name}</option>`
+//	}
 	data.forEach(type => {
 		contents += `<option value='${type.PT_Name}'>${type.PT_Name}</option>`
 	})
 	type.innerHTML = contents
-
 }
 
 name.addEventListener("change", () => {

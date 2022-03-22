@@ -22,8 +22,7 @@ public class ProductType implements Serializable {
 
 	public ProductType() {}
 
-	public ProductType(int id, String name, String type, int stock, double cost, double price, String image) {
-		this.PT_ID = id;
+	public ProductType(String name) {
 	    this.PT_Name = name;
 	}
 

@@ -3,7 +3,6 @@ package tw.hibernateproject.product.model;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import tw.hibernateproject.product.model.ProductDao;
 
 public class ProductTypeDao implements IProductTypeDao {
 
@@ -14,14 +13,18 @@ public class ProductTypeDao implements IProductTypeDao {
 	public ProductTypeDao(Session session) {
 		this.session = session;
 	}
-
+	
+	
 	@Override
-	public ProductType insert(ProductType product) {
-		System.out.println("ProductTypeDao: insert");
-		Product houseResult = session.get(Product.class, product.getPT_ID());
-		if (houseResult == null) {
-			session.save(product);
-			return product;
+	public ProductType insert(ProductType productType) {
+		System.out.println("ProductDao: insert ProductType");
+		ProductType productTypeResult = session.get(ProductType.class, productType.getPT_ID());
+		
+		System.out.println(productTypeResult);
+		
+		if (productTypeResult == null) {
+//			session.save(productType);
+			return productType;
 		}
 		return null;
 	}

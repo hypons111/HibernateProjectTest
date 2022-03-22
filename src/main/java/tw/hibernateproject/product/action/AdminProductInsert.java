@@ -13,7 +13,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import tw.hibernateproject.product.model.Product;
+import tw.hibernateproject.product.model.ProductType;
 import tw.hibernateproject.product.service.ProductService;
+import tw.hibernateproject.product.service.ProductTypeService;
 import tw.hibernateproject.util.HibernateUtil;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
@@ -28,7 +30,8 @@ public class AdminProductInsert extends HttpServlet {
 		System.out.println("AdminProductInsert");
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
-		ProductService service = new ProductService(session);
+		ProductService productService = new ProductService(session);
+		ProductTypeService productTypeService = new ProductTypeService(session);
 
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -41,15 +44,23 @@ public class AdminProductInsert extends HttpServlet {
 		double price = Math.ceil(Double.parseDouble(request.getParameter("price")) * 10.0) / 10.0;
 		String description = "";
 
-		Product product = new Product(0, name, type, stock, cost, price, "temp", description);
-		Product result = service.insert(product);
+		ProductType productType = new ProductType(type);
+		productTypeService.insert(productType);
+		
+		Product product = new Product(0, name, stock, cost, price, "temp", description, productType);
 
-		String image = result.getP_ID() + ".jpg";
-		result.setP_Image(image);
-
+		//productResult 是連接到資料庫的某一筆資料
+		Product productResult = productService.insert(product);
+		
+		//product bean 建立成功, 有 id 後才能把 id 用作 image 名稱欴
+		String image = productResult.getP_ID() + ".jpg";
+		
+		//productResult.productResult.getP_ID() 指定修改該筆資料的 image
+		productResult.setP_Image(image);
+	
 		try {
 			for (Part part : request.getParts()) {
-				part.write("C:/DataSource/workspace/HibernateProjectTest/src/main/webapp/admin/images/product/" + product.getP_Image());
+				part.write("C:/DataSource/workspace/HibernateProjectTest/src/main/webapp/admin/images/product/" + image);
 			}
 		} catch (IOException | ServletException e) {
 			e.printStackTrace();
@@ -67,3 +78,11 @@ public class AdminProductInsert extends HttpServlet {
 		processAction(request, response);
 	}
 }
+
+
+//@Override
+//public ProductType insert(ProductType productType) {
+//	return productDao.insert(productType);
+//}
+//ProductType insert(ProductType productType);
+//ProductType insert(ProductType roductType);

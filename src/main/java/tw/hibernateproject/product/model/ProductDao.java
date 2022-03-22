@@ -15,11 +15,13 @@ public class ProductDao implements IProductDao {
 	public ProductDao(Session session) {
 		this.session = session;
 	}
-
+	
 	@Override
 	public Product insert(Product product) {
-		System.out.println("ProductDao: insert");
+		System.out.println("ProductDao: insert Product");
 		Product productResult = session.get(Product.class, product.getP_ID());
+		System.out.println(productResult);
+		
 		if (productResult == null) {
 			session.save(product);
 			return product;
@@ -46,7 +48,7 @@ public class ProductDao implements IProductDao {
 		Product result = session.get(Product.class, id);
 		if (result != null) {
 			result.setP_Name(name);
-			result.setP_Type(type);
+//			result.setP_Type(type);
 			result.setP_Stock(stock);
 			result.setP_Cost(cost);
 			result.setP_Price(price);
