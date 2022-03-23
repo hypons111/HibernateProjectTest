@@ -13,7 +13,6 @@ public class ProductService implements IProductService  {
 	private ProductDao productDao;
 	
 	public ProductService(Session session) {
-		System.out.println("ProductService");
 		productDao = new ProductDao(session);
 	}
 
@@ -34,6 +33,7 @@ public class ProductService implements IProductService  {
 
 	@Override
 	public Product update(int id, String name, String type, int stock, double cost, double price, String Description) {
+		System.out.println("ProductService: " + "update: " + type);
 		return productDao.update(id, name, type, stock, cost, price, Description);
 	}
 

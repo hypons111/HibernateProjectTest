@@ -43,12 +43,9 @@ public class AdminProductInsert extends HttpServlet {
 		double price = Math.ceil(Double.parseDouble(request.getParameter("price")) * 10.0) / 10.0;
 		String description = "";
 
-		System.out.println("AdminProductInsert " + type);
 		ProductType productType = new ProductType(type);
 		productTypeService.insert(productType);
-
-		
-		Product product = new Product(0, name, stock, cost, price, "temp", description, productType);
+		Product product = new Product(0, name, type,  stock, cost, price, "temp", description, productType);
 
 		//productResult 是連接到資料庫的某一筆資料
 		Product productResult = productService.insert(product);

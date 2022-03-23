@@ -4,22 +4,22 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity @Table(name = "Product")
 public class Product implements Serializable {
-    private static long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 1L;
 
 	@Id @Column(name = "P_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int P_ID;
+	
+	@Column(name = "P_Type")
+	private String P_Type;
 	
 	@Column(name = "P_Name")
 	private String P_Name;
@@ -39,32 +39,23 @@ public class Product implements Serializable {
 	@Column(name = "P_Description")
 	private String P_Description;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PT_ID")
-	private ProductType productType;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "PT_ID")
+//	private ProductType productType;
 	
 	public Product() {}
 
-	public Product(int id, String name, int stock, double cost, double price, String image, String description, ProductType productType) {
+	public Product(int id, String name, String type, int stock, double cost, double price, String image, String description, ProductType productType) {
 		this.P_ID = id;
+		this.P_Type = type;
 	    this.P_Name = name;
 	    this.P_Stock = stock;
 	    this.P_Cost = cost;
 	    this.P_Price = price;
 	    this.P_Image = image;
 	    this.P_Description =  description;
-	    this.setProductType(productType);
 	}
-	
-//	public Product(int id,String p_Name, String p_Type, int p_Stock, double p_Cost, double p_Price, String p_Description) {
-//		this.P_ID = id;
-//		P_Name = p_Name;
-//		P_Type = p_Type;
-//		P_Stock = p_Stock;
-//		P_Cost = p_Cost;
-//		P_Price = p_Price;
-//		P_Description = p_Description;
-//	}
+
 
 	public int getP_ID() {
 		return P_ID;
@@ -72,6 +63,14 @@ public class Product implements Serializable {
 
 	public void setP_ID(int p_ID) {
 		P_ID = p_ID;
+	}
+
+	public String getP_Type() {
+		return P_Type;
+	}
+
+	public void setP_Type(String p_Type) {
+		P_Type = p_Type;
 	}
 
 	public String getP_Name() {
@@ -122,22 +121,13 @@ public class Product implements Serializable {
 		P_Description = p_Description;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public ProductType getProductType() {
-		return productType;
-	}
-
-	public void setProductType(ProductType productType) {
-		this.productType = productType;
-	}
-
-	public static void setSerialversionuid(long serialversionuid) {
-		serialVersionUID = serialversionuid;
-	}
-	
+//	public ProductType getProductType() {
+//		return productType;
+//	}
+//
+//	public void setProductType(ProductType productType) {
+//		this.productType = productType;
+//	}
 	
 }
 	

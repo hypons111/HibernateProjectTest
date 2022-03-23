@@ -18,7 +18,7 @@ public class ProductDao implements IProductDao {
 	
 	@Override
 	public Product insert(Product product) {
-		System.out.println("ProductDao: insert Product");
+		System.out.println("ProductDao: insert" + product);
 		Product productResult = session.get(Product.class, product.getP_ID());
 		System.out.println(productResult);
 		
@@ -44,11 +44,10 @@ public class ProductDao implements IProductDao {
 	
 	@Override
 	public Product update(int id, String name, String type, int stock, double cost, double price, String Description) {
-		System.out.println("ProductDao: update");
 		Product result = session.get(Product.class, id);
 		if (result != null) {
 			result.setP_Name(name);
-//			result.setP_Type(type);
+			result.setP_Type(type);
 			result.setP_Stock(stock);
 			result.setP_Cost(cost);
 			result.setP_Price(price);

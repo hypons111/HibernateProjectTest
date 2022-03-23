@@ -23,6 +23,8 @@ public class AdminProductIndex extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("AdminProductIndex");
+
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
 
@@ -32,25 +34,13 @@ public class AdminProductIndex extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		// 把 hibernate 的方法包在 DAO 裡面再包在 service 裡面
-		ProductService service = new ProductService(session);
-		List<Product> resultList = service.selectAll();
-		List<ProductJson> productList = new ArrayList<>();
+		ProductService ProductService = new ProductService(session);
+		List<Product> resultList = ProductService.selectAll();
 		
-
+		System.out.println(resultList.size());
 		
-		for (Product p : resultList) {
-//			System.out.println(p.getP_ID());
-//			System.out.println(p.getProductType().getPT_Name());
-//			System.out.println(p.getP_Name());
-//			System.out.println(p.getP_Stock());
-//			System.out.println(p.getP_Cost());
-//			System.out.println(p.getP_Price());
-//			System.out.println(p.getP_Image());
-			productList.add(new ProductJson(p.getP_ID(), p.getProductType().getPT_Name(), p.getP_Name(), p.getP_Stock(), p.getP_Cost(), p.getP_Price(), p.getP_Image()));
-		}
-
 		Gson gson = new Gson();
-		String jsonString = gson.toJson(productList);
+		String jsonString = gson.toJson(resultList);
 		out.print(jsonString);
 		out.close();
 	}

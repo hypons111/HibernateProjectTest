@@ -37,7 +37,7 @@ public class AdminProductUpdate extends HttpServlet {
 		int stock = Integer.parseInt(request.getParameter("stock"));
 		double cost = Math.ceil(Double.parseDouble(request.getParameter("cost")) * 10.0) / 10.0;
 		double price = Math.ceil(Double.parseDouble(request.getParameter("price")) * 10.0) / 10.0;
-		String oldImageName = id + ".jpg";
+//		String oldImageName = id + ".jpg";
 		
 		Part image;
 		try {

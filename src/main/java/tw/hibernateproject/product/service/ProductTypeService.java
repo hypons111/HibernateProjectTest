@@ -16,7 +16,6 @@ public class ProductTypeService implements IProductTypeService  {
 	
 	@Override
 	public ProductType insert(ProductType productType) {
-		System.out.println("ProductTypeService " + productType.getPT_Name());
 		return productTypeDao.insert(productType);
 	}
 

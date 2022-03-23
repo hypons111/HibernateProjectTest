@@ -96,15 +96,15 @@ function showData(data) {
 	contents = ""
 	for (let i = 0; i < data.length; i++) {
 		contents += "<tr><td>" + (i + 1) + "</td>"
-		contents += "<td>" + data[i].type + "</td>"
-		contents += "<td>" + data[i].id + "</td>"
-		contents += "<td>" + data[i].name + "</td>"
-		contents += "<td>" + data[i].stock + "</td>"
-		contents += "<td>" + data[i].cost + "</td>"
-		contents += "<td>" + data[i].price + "</td>"
-		contents += "<td><img src='/images/product/" + data[i].image + "?" + Math.random() + "' width='50px'></td>"
-		contents += "<td><a href=updateform.jsp?P_ID=" + data[i].name + "><button>修改</button></a></td>"
-		contents += "<td><a href=delete?P_ID=" + data[i].id + "><button>刪除</button></a></td></tr>"
+		contents += "<td>" + data[i].P_Type + "</td>"
+		contents += "<td>" + data[i].P_ID + "</td>"
+		contents += "<td>" + data[i].P_Name + "</td>"
+		contents += "<td>" + data[i].P_Stock + "</td>"
+		contents += "<td>" + data[i].P_Cost + "</td>"
+		contents += "<td>" + data[i].P_Price + "</td>"
+		contents += "<td><img src='/images/product/" + data[i].P_Image + "?" + Math.random() + "' width='50px'></td>"
+		contents += "<td><a href=updateform.jsp?P_ID=" + data[i].P_ID + "><button>修改</button></a></td>"
+		contents += "<td><a href=delete?P_ID=" + data[i].P_ID + "><button>刪除</button></a></td></tr>"
 	}
 	resultTable.innerHTML = contents
 }
