@@ -27,7 +27,6 @@ public class AdminProductInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println("AdminProductInsert");
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
 		ProductService productService = new ProductService(session);
@@ -44,8 +43,10 @@ public class AdminProductInsert extends HttpServlet {
 		double price = Math.ceil(Double.parseDouble(request.getParameter("price")) * 10.0) / 10.0;
 		String description = "";
 
+		System.out.println("AdminProductInsert " + type);
 		ProductType productType = new ProductType(type);
 		productTypeService.insert(productType);
+
 		
 		Product product = new Product(0, name, stock, cost, price, "temp", description, productType);
 

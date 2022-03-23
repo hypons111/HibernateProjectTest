@@ -4,6 +4,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import hibernate.model.HouseBean;
+
 public class ProductTypeDao implements IProductTypeDao {
 
 	private Session session;
@@ -17,15 +19,19 @@ public class ProductTypeDao implements IProductTypeDao {
 	
 	@Override
 	public ProductType insert(ProductType productType) {
-		System.out.println("ProductDao: insert ProductType");
+		System.out.println("ProductTypeDao: insert ProductType: productType " + productType.getPT_Name());
+		System.out.println("ProductTypeDao: insert ProductType: productType " + productType.getPT_ID());
+		
 		ProductType productTypeResult = session.get(ProductType.class, productType.getPT_ID());
 		
-		System.out.println(productTypeResult);
-		
-		if (productTypeResult == null) {
+		System.out.println("ProductTypeDao: insert ProductType: session.get() " + session.get(ProductType.class, productType.getPT_ID()));
+//		System.out.println("ProductTypeDao: insert ProductType: productTypeResult " + productTypeResult.getPT_ID());
+//		System.out.println("ProductTypeDao: insert ProductType: productTypeResult  " + productTypeResult.getPT_Name());
+
+		//		if (productTypeResult == null) {
 //			session.save(productType);
-			return productType;
-		}
+//			return productType;
+//		}
 		return null;
 	}
 
