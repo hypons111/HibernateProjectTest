@@ -1,8 +1,6 @@
 package tw.hibernateproject.product.action;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import tw.hibernateproject.product.model.Product;
 import tw.hibernateproject.product.service.ProductService;
 import tw.hibernateproject.util.HibernateUtil;
 

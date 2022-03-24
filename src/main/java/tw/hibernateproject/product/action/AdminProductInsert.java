@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +40,7 @@ public class AdminProductInsert extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String name = request.getParameter("name");
-		String type = request.getParameter("type");
+		String type = request.getParameter("type").toUpperCase();
 		int stock = Integer.parseInt(request.getParameter("stock"));
 		double cost = Math.ceil(Double.parseDouble(request.getParameter("cost")) * 10.0) / 10.0;
 		double price = Math.ceil(Double.parseDouble(request.getParameter("price")) * 10.0) / 10.0;
@@ -59,7 +57,6 @@ public class AdminProductInsert extends HttpServlet {
 		if (productTypeResultSet.add(type)) {
 			ProductType productType = new ProductType(type);
 			productTypeService.insert(productType);
-			System.out.println("adhslkjadhsflakjshflakjsdhfladkjshfladjshflakjdshfladkjshfladjshfladkjshfdkjafh");
 		}
 		
 		Product product = new Product(0, name, type, stock, cost, price, "temp", description);
