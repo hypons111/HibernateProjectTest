@@ -32,15 +32,13 @@ public class AdminProductIndex extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-
+		
 		// 把 hibernate 的方法包在 DAO 裡面再包在 service 裡面
-		ProductService ProductService = new ProductService(session);
-		List<Product> resultList = ProductService.selectAll();
-		
-		System.out.println(resultList.size());
-		
+		ProductService productService = new ProductService(session);
+		List<Product> productResultList = productService.selectAll();
+			
 		Gson gson = new Gson();
-		String jsonString = gson.toJson(resultList);
+		String jsonString = gson.toJson(productResultList);
 		out.print(jsonString);
 		out.close();
 	}

@@ -18,9 +18,8 @@ public class ProductDao implements IProductDao {
 	
 	@Override
 	public Product insert(Product product) {
-		System.out.println("ProductDao: insert" + product);
+		System.out.println("ProductDao: insert: " + product);
 		Product productResult = session.get(Product.class, product.getP_ID());
-		System.out.println(productResult);
 		
 		if (productResult == null) {
 			session.save(product);

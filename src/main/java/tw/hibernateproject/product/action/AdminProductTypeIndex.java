@@ -4,6 +4,9 @@ package tw.hibernateproject.product.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +20,7 @@ import tw.hibernateproject.product.service.ProductTypeService;
 import tw.hibernateproject.util.HibernateUtil;
 
 @WebServlet("/admin/product/type/index")
-public class AdminProductType extends HttpServlet {
+public class AdminProductTypeIndex extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -30,10 +33,11 @@ public class AdminProductType extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		// 把 hibernate 的方法包在 DAO 裡面再包在 service 裡面
-		ProductTypeService service = new ProductTypeService(session);
-		List<ProductType> resultList = service.selectAll();
+		ProductTypeService productTypeService = new ProductTypeService(session);
+		List<ProductType> productTypeResultList = productTypeService.selectAll();
+				
 		Gson gson = new Gson();
-		String jsonString = gson.toJson(resultList);
+		String jsonString = gson.toJson(productTypeResultList);
 		out.print(jsonString);
 		out.close();
 	}

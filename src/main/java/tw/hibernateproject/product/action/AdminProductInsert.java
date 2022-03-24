@@ -1,6 +1,11 @@
 package tw.hibernateproject.product.action;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -43,19 +48,29 @@ public class AdminProductInsert extends HttpServlet {
 		double price = Math.ceil(Double.parseDouble(request.getParameter("price")) * 10.0) / 10.0;
 		String description = "";
 
-		ProductType productType = new ProductType(type);
-		productTypeService.insert(productType);
-		Product product = new Product(0, name, type,  stock, cost, price, "temp", description, productType);
+		List<ProductType> productTypeResultList = productTypeService.selectAll();
 
-		//productResult 是連接到資料庫的某一筆資料
+		Set<String> productTypeResultSet = new HashSet<>();
+
+		for (ProductType productType : productTypeResultList) {
+			productTypeResultSet.add(productType.getPT_Name());
+		}
+
+		if (productTypeResultSet.add(type)) {
+			ProductType productType = new ProductType(type);
+			productTypeService.insert(productType);
+			System.out.println("adhslkjadhsflakjshflakjsdhfladkjshfladjshflakjdshfladkjshfladjshfladkjshfdkjafh");
+		}
+		
+		Product product = new Product(0, name, type, stock, cost, price, "temp", description);
+
+		// productResult 是連接到資料庫的某一筆資料
 		Product productResult = productService.insert(product);
-		
-		//product bean 建立成功, 有 id 後才能把 id 用作 image 名稱欴
+		// product bean 建立成功, 有 id 後才能把 id 用作 image 名稱欴
 		String image = productResult.getP_ID() + ".jpg";
-		
-		//productResult.productResult.getP_ID() 指定修改該筆資料的 image
+		// productResult.productResult.getP_ID() 指定修改該筆資料的 image
 		productResult.setP_Image(image);
-	
+
 		try {
 			for (Part part : request.getParts()) {
 				part.write("C:/DataSource/workspace/HibernateProjectTest/src/main/webapp/admin/images/product/" + image);
@@ -63,24 +78,15 @@ public class AdminProductInsert extends HttpServlet {
 		} catch (IOException | ServletException e) {
 			e.printStackTrace();
 		}
+
 		response.sendRedirect("index.jsp");
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processAction(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processAction(request, response);
 	}
 }
-
-
-//@Override
-//public ProductType insert(ProductType productType) {
-//	return productDao.insert(productType);
-//}
-//ProductType insert(ProductType productType);
-//ProductType insert(ProductType roductType);

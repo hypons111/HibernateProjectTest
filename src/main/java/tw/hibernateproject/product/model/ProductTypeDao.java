@@ -17,6 +17,7 @@ public class ProductTypeDao implements IProductTypeDao {
 	
 	@Override
 	public ProductType insert(ProductType productType) {
+		System.out.println("ProductTypeDao: insert: " + productType);
 		ProductType productTypeResult = session.get(ProductType.class, productType.getPT_ID());
 		if (productTypeResult == null) {
 			session.save(productType);
