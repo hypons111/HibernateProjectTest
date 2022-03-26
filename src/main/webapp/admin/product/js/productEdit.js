@@ -46,6 +46,12 @@ function addEventListeners(data) {
 	const type = document.querySelector("#type")
 	const typeInput = document.querySelector(".typeInput")
 
+	type.addEventListener('mouseup', event => {
+		if (event.target.value === "-------新增-------") {
+			event.target.parentElement.innerHTML = `<label>產品種類</label><input id="type" class="input" type="text" name="type">`
+		}
+	})
+
 	document.querySelector("#id").addEventListener("click", () => {
 		event.preventDefault()
 		alert("產品編號不能更改")
@@ -64,7 +70,7 @@ function addEventListeners(data) {
 
 
 	typeInput.addEventListener("click", event => {
-	console.log(event.target)
+		console.log(event.target)
 		let typeContent = "	<select id='type' class='type' name='type'>"
 		for (let j = 0; j < productTypeRawData.length; j++) {
 			typeContent += `<option value='${productTypeRawData[j].PT_Name}'>${productTypeRawData[j].PT_Name}</option>`
@@ -111,9 +117,9 @@ function addEventListeners(data) {
 
 		if (switcher === "on") {
 			document.querySelector(".產品編號").disabled = false
-//			let typeValue = document.querySelector(".type").value || data.P_Type
-//			type.innerHTML = ""
-//			type.innerHTML += `<input type='text' class='產品種類'	name='type'	 value='${typeValue}'>`
+			//			let typeValue = document.querySelector(".type").value || data.P_Type
+			//			type.innerHTML = ""
+			//			type.innerHTML += `<input type='text' class='產品種類'	name='type'	 value='${typeValue}'>`
 			event.currentTarget.submit()
 		}
 

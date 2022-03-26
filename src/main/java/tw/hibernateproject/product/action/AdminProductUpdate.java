@@ -1,6 +1,10 @@
 package tw.hibernateproject.product.action;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +15,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import javax.servlet.http.Part;
 
+import tw.hibernateproject.product.model.ProductType;
 import tw.hibernateproject.product.service.ProductService;
+import tw.hibernateproject.product.service.ProductTypeService;
 import tw.hibernateproject.util.HibernateUtil;
 
 @WebServlet("/admin/product/update")
@@ -26,7 +32,9 @@ public class AdminProductUpdate extends HttpServlet {
 		System.out.println("AdminProductUpdate");
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
-		
+		ProductService productservice = new ProductService(session);
+		ProductTypeService productTypeService = new ProductTypeService(session);
+	
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -37,7 +45,6 @@ public class AdminProductUpdate extends HttpServlet {
 		int stock = Integer.parseInt(request.getParameter("stock"));
 		double cost = Math.ceil(Double.parseDouble(request.getParameter("cost")) * 10.0) / 10.0;
 		double price = Math.ceil(Double.parseDouble(request.getParameter("price")) * 10.0) / 10.0;
-//		String oldImageName = id + ".jpg";
 		
 		Part image;
 		try {
@@ -52,9 +59,17 @@ public class AdminProductUpdate extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		// 把 hibernate 的方法包在 DAO 裡面再包在 service 裡面
-		ProductService service = new ProductService(session);
-		service.update(id, name, type, stock, cost, price, "hahaha");
+		productservice.update(id, name, type, stock, cost, price, "hahaha");
+
+		List<ProductType> productTypeResultList = productTypeService.selectAll();
+		Set<String> productTypeResultSet = new HashSet<>();
+		for (ProductType productType : productTypeResultList) {
+			productTypeResultSet.add(productType.getPT_Name());
+		}
+		if (productTypeResultSet.add(type)) {
+			ProductType productType = new ProductType(type);
+			productTypeService.insert(productType);
+		}
 		
 		response.sendRedirect("index.jsp");
 	}

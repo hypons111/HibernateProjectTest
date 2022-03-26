@@ -36,9 +36,6 @@ type.addEventListener('mouseup', event => {
 
 function setTypePullDownMenu(data) {
 	let contents = ""
-//	for(let i=0; i<data.length; i++) {
-//		contents += `<option value='${i+1}'>${data[i].PT_Name}</option>`
-//	}
 	data.forEach(type => {
 		contents += `<option value='${type.PT_Name}'>${type.PT_Name}</option>`
 	})

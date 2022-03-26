@@ -1,4 +1,4 @@
-use HibernateDemo
+use HibernateDB
 
 CREATE TABLE ProductType (
 	[PT_ID] INT IDENTITY(1, 1) PRIMARY KEY NOT NULL, 
@@ -35,6 +35,7 @@ INSERT INTO Product VALUES
 ('VEGE',	'¤é¥»Ó¦»U',			80,		60.5,	90,		'7.jpg',	''),
 ('VEGE',	'½Ü¨§­]',			20,		55,		70,		'8.jpg',	'')
 
+use HibernateDB
 select * from product 
 select * from ProductType ORDER BY PT_ID
 
