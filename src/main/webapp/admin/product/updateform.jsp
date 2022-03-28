@@ -15,13 +15,13 @@
 		<table border="1">
 			<thead>
 				<tr>
-					<th>產品種類</th>
-					<th>產品編號</th>
-					<th>產品名稱</th>
-					<th>產品存量</th>
-					<th>產品買價</th>
-					<th>產品售價</th>
-					<th>產品圖片</th>
+					<th>Type</th>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Stock</th>
+					<th>Buy</th>
+					<th>Sell</th>
+					<th>Image</th>
 				</tr>
 			</thead>
 			<tbody id="resultTable"></tbody>

@@ -1,8 +1,8 @@
 use HibernateDB
 
 CREATE TABLE ProductType (
-	[PT_ID] INT IDENTITY(1, 1) PRIMARY KEY NOT NULL, 
-	[PT_Name] VARCHAR(20) UNIQUE NOT NULL, 
+	[ProductType_ID] INT IDENTITY(1, 1) PRIMARY KEY NOT NULL, 
+	[ProductType_Name] VARCHAR(20) UNIQUE NOT NULL, 
 )
 INSERT INTO ProductType VALUES
 ('-------新增-------'),
@@ -13,15 +13,14 @@ INSERT INTO ProductType VALUES
 
 
 CREATE TABLE Product (
-	[P_ID] INT NOT NULL IDENTITY(1, 1) PRIMARY KEY , 
-	[P_Type] VARCHAR(20) NOT NULL, 
-	[P_Name] NVARCHAR(100) NOT NULL, 
-	[P_Stock] INT NOT NULL, 
-	[P_Cost] NUMERIC(6, 1) NOT NULL, 
-	[P_Price] NUMERIC(6, 1) NOT NULL, 
-	[P_Image] VARCHAR(100) NOT NULL, 
-	[P_Description] NVARCHAR(200) NOT NULL, 
-	[Supplier_ID] int NOT NULL
+	[Product_ID] INT NOT NULL IDENTITY(1, 1) PRIMARY KEY , 
+	[Product_Type] VARCHAR(20) NOT NULL, 
+	[Product_Name] NVARCHAR(100) NOT NULL, 
+	[Product_Stock] INT NOT NULL, 
+	[Product_Cost] NUMERIC(6, 1) NOT NULL, 
+	[Product_Price] NUMERIC(6, 1) NOT NULL, 
+	[Product_Image] VARCHAR(100) NOT NULL, 
+	[Product_Description] NVARCHAR(200) NOT NULL
 )
 
 INSERT INTO Product VALUES
@@ -51,48 +50,19 @@ INSERT INTO Product VALUES
 
 
 
-CREATE TABLE Supplier (
-	[Supplier_ID] INT IDENTITY(1, 1) PRIMARY KEY NOT NULL, 
-	[Supplier_Name] VARCHAR(30) UNIQUE NOT NULL, 
-)
-INSERT INTO Supplier VALUES
-('-------新增-------'),
-('Panorama Meats'),
-('American Butcher'),
-('Niman Ranch'),
-('Hook’s Cheese'),
-('Revier Cattle'),
-('Compart Duroc'),
-('Greater Omaha Packing Co'),
-('Jidori Chicken'),
-('1855 Black Angus Beef'),
-('Cape Grim Tasmanian Beef'),
-('Mary’s Free Range Chickens'),
-('Diestel Turkey Ranch'),
-('Creekstone Farms')
 
-
-CREATE TABLE OrderItem (
-	[TEMP_OrderItem_ID] INT PRIMARY KEY IDENTITY(1001, 1),
-	[TEMP_Order_ID] INT,
-	[Product_ID] INT REFERENCES Product(P_ID),
-	[Product_Quantity] INT Not Null
-)
 
 
 
 
 use HibernateDB
-select * from supplier ORDER BY Supplier_ID
-select * from product ORDER BY Supplier_ID
-select * from ProductType ORDER BY PT_ID
-select * from OrderItem ORDER BY Product_ID
+select * from product ORDER BY product_ID
+select * from ProductType ORDER BY producttype_ID
 
-select * from stock
-select * from stocktransaction
 
 
 
 drop table product 
 drop table ProductType 
-drop table OrderItem 
+
+

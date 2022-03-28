@@ -45,25 +45,24 @@ public class AdminProductUpdate extends HttpServlet {
 		int stock = Integer.parseInt(request.getParameter("stock"));
 		double cost = Math.ceil(Double.parseDouble(request.getParameter("cost")) * 10.0) / 10.0;
 		double price = Math.ceil(Double.parseDouble(request.getParameter("price")) * 10.0) / 10.0;
-
+		String image = id + ".jpg";
 		// 判斷是不要更新圖片
 		try {
 			String newImageName = request.getPart("image").getSubmittedFileName();
 			if (newImageName != "") {
 				for (Part part : request.getParts()) {
-					part.write("C:/DataSource/workspace/HibernateProjectTest/src/main/webapp/admin/images/product/" + id
-							+ ".jpg");
+					part.write("C:/DataSource/workspace/HibernateProjectTest/src/main/webapp/admin/images/product/" + id + ".jpg");
 				}
 			}
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}
 
-		productservice.update(id, name, type, stock, cost, price, "temp");
+		productservice.update(id, name, type, stock, cost, price, image);
 
 		Set<String> productTypeNameResultSet = new HashSet<>();
 		for (ProductType productType : productTypeService.selectAll()) {
-			productTypeNameResultSet.add(productType.getPT_Name());
+			productTypeNameResultSet.add(productType.getProductType_Name());
 		}
 		if (productTypeNameResultSet.add(type)) {
 			productTypeService.insert(new ProductType(type));

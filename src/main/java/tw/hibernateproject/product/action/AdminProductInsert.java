@@ -50,7 +50,7 @@ public class AdminProductInsert extends HttpServlet {
 		// 判斷是否要新增產品種類
 		Set<String> productTypeNameResultSet = new HashSet<>();
 		for (ProductType productType : productTypeService.selectAll()) {
-			productTypeNameResultSet.add(productType.getPT_Name());
+			productTypeNameResultSet.add(productType.getProductType_Name());
 		}
 		if (productTypeNameResultSet.add(type)) {
 			productTypeService.insert(new ProductType(type));
@@ -61,8 +61,8 @@ public class AdminProductInsert extends HttpServlet {
 		// productResult 是連接到資料庫的某一筆資料
 		Product productResult = productService.insert(new Product(0, name, type, stock, cost, price, "temp", description));
 		// productResult.productResult.getP_ID() 指定修改該筆資料的 image
-		String image = productResult.getP_ID() + ".jpg";
-		productResult.setP_Image(image);
+		String image = productResult.getProduct_ID() + ".jpg";
+		productResult.setProduct_Image(image);
 
 		
 		//儲存圖片

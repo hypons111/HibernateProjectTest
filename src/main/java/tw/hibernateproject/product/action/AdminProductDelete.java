@@ -22,12 +22,10 @@ public class AdminProductDelete extends HttpServlet {
 		
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
-		int id = Integer.parseInt(request.getParameter("P_ID"));
-		
-
 		ProductService productService = new ProductService(session);
-		productService.delete(id);
-		
+
+		int id = Integer.parseInt(request.getParameter("Product_ID"));
+		productService.delete(id);	
 		
 		response.sendRedirect("index.jsp");
 	}

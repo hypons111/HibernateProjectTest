@@ -29,7 +29,6 @@ public class AdminProductIndex extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		
 		ProductService productService = new ProductService(session);
 		List<Product> productResultList = productService.selectAll();
 		PrintWriter out = response.getWriter();

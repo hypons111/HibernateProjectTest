@@ -19,7 +19,7 @@ public class ProductDao implements IProductDao {
 	@Override
 	public Product insert(Product product) {
 		System.out.println("ProductDao: insert: " + product);
-		Product productResult = session.get(Product.class, product.getP_ID());
+		Product productResult = session.get(Product.class, product.getProduct_ID());
 		
 		if (productResult == null) {
 			session.save(product);
@@ -43,16 +43,31 @@ public class ProductDao implements IProductDao {
 	
 	@Override
 	public Product update(int id, String name, String type, int stock, double cost, double price, String Description) {
-		Product result = session.get(Product.class, id);
-		if (result != null) {
-			result.setP_Name(name);
-			result.setP_Type(type);
-			result.setP_Stock(stock);
-			result.setP_Cost(cost);
-			result.setP_Price(price);
-			result.setP_Description(Description);
+		System.out.println("ProductDao : update");
+		Product productResult = session.get(Product.class, id);
+		if (productResult != null) {
+			System.out.println(productResult.getProduct_ID());
+			System.out.println(productResult.getProduct_Name());
+			System.out.println(productResult.getProduct_Type());
+			System.out.println(productResult.getProduct_Stock());
+			System.out.println(productResult.getProduct_Cost());
+			System.out.println(productResult.getProduct_Price());
+			System.out.println(productResult.getProduct_Image());
+			productResult.setProduct_Name(name);
+			productResult.setProduct_Type(type);
+			productResult.setProduct_Stock(stock);
+			productResult.setProduct_Cost(cost);
+			productResult.setProduct_Price(price);
+			productResult.setProduct_Description(Description);
 		}
-		return result;
+		System.out.println(productResult.getProduct_ID());
+		System.out.println(productResult.getProduct_Name());
+		System.out.println(productResult.getProduct_Type());
+		System.out.println(productResult.getProduct_Stock());
+		System.out.println(productResult.getProduct_Cost());
+		System.out.println(productResult.getProduct_Price());
+		System.out.println(productResult.getProduct_Image());
+		return productResult;
 	}
 
 	@Override
@@ -61,7 +76,7 @@ public class ProductDao implements IProductDao {
 		System.out.println("ProductDao: delete: " + result);
 		if (result != null) {
 			session.delete(result);
-			File image = new File("C:/DataSource/workspace/HibernateProjectTest/src/main/webapp/admin/images/product/" + result.getP_Image());
+			File image = new File("C:/DataSource/workspace/HibernateProjectTest/src/main/webapp/admin/images/product/" + result.getProduct_Image());
 			image.delete();
 			return true;
 		}

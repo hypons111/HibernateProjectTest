@@ -1,9 +1,8 @@
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
-const targetID = urlParams.get('P_ID')
+const targetID = urlParams.get('Product_ID')
 const PRODUCT_URL = "http://localhost:8080/HibernateProject/admin/product/index"
 const PRODUCT_TYPE_URL = "http://localhost:8080/HibernateProject/admin/product/type/index"
-//const columnList = ["產品種類", "產品供應商", "產品編號", "產品名稱", "產品存量", "產品買價", "產品售價", "產品圖片"]
 
 let productRawData = []
 let productTypeRawData = []
@@ -23,22 +22,22 @@ axios.get(PRODUCT_URL)
 	.catch(error => { console.log(error) })
 
 function getTargetProduct(data) {
-	return data.find(product => product.P_ID == targetID)
+	return data.find(product => product.product_ID == targetID)
 }
 
 function showData(data) {
 	let contents = "<tr>"
-	contents += "<td id='type' width='155px'>	<input type='text' class='產品種類 typeInput'	name='type'	 value='" + data.P_Type + "'></td>"
-	contents += "<td id='id'>					<input type='text' class='產品編號 input'	name='id'	 value='" + data.P_ID + "' disabled ></td>"
-	contents += "<td id='name'>					<input type='text' class='產品名稱 input'	name='name'	 value='" + data.P_Name + "'></td>"
-	contents += "<td>							<input type='text' class='產品存量 input, input'	name='stock' value='" + data.P_Stock + "'></td>"
-	contents += "<td>							<input type='text' class='產品買價 input'	name='cost'	 value='" + data.P_Cost + "'></td>"
-	contents += "<td>							<input type='text' class='產品售價 input'	name='price' value='" + data.P_Price + "'></td>"
-	contents += "<td id='imageTD'>				<input type='file' class='產品圖片 input'	name='image'/></td>"
-	contents += "<td><button id='button'>修改</button></td>"
-	contents += "<td><button>取消</button></td>"
+	contents += "<td id='type' width='155px'>	<input type='text' class='產品種類 typeInput'	name='type'	 value='" + data.product_Type + "'></td>"
+	contents += "<td id='id'>					<input type='text' class='產品編號 input'		name='id'	 value='" + data.product_ID + "' disabled ></td>"
+	contents += "<td id='name'>					<input type='text' class='產品名稱 input'		name='name'	 value='" + data.product_Name + "'></td>"
+	contents += "<td>							<input type='text' class='產品存量 input'		name='stock' value='" + data.product_Stock + "'></td>"
+	contents += "<td>							<input type='text' class='產品買價 input'		name='cost'	 value='" + data.product_Cost + "'></td>"
+	contents += "<td>							<input type='text' class='產品售價 input'		name='price' value='" + data.product_Price + "'></td>"
+	contents += "<td id='imageTD'>				<input type='file' class='產品圖片 input'		name='image'/></td>"
+	contents += "<td><button id='button'>Submit</button></td>"
+	contents += "<td><button>Cancel</button></td>"
 	resultTable.innerHTML = contents
-	oldProductName = data.P_Name
+	oldProductName = data.product_Name
 }
 
 function addEventListeners(data) {
@@ -59,7 +58,7 @@ function addEventListeners(data) {
 
 	document.querySelector("#name input").addEventListener("change", (event) => {
 		for (let i = 0; i < data.length; i++) {
-			if (data[i].P_Name.toLowerCase() == event.target.value.trim().toLowerCase()) {
+			if (data[i].product_Name.toLowerCase() == event.target.value.trim().toLowerCase()) {
 				alert("已有同名稱產品")
 				event.target.value = oldProductName
 				i = data.length
@@ -67,26 +66,20 @@ function addEventListeners(data) {
 		}
 	})
 
-
-
 	typeInput.addEventListener("click", event => {
-		console.log(event.target)
 		let typeContent = "	<select id='type' class='type' name='type'>"
 		for (let j = 0; j < productTypeRawData.length; j++) {
-			typeContent += `<option value='${productTypeRawData[j].PT_Name}'>${productTypeRawData[j].PT_Name}</option>`
+			typeContent += `<option value='${productTypeRawData[j].productType_Name}'>${productTypeRawData[j].productType_Name}</option>`
 		}
 		typeContent += "</select>"
 		type.innerHTML = typeContent
 	})
 
 
-
-
 	document.querySelector("#editForm").addEventListener("submit", (event) => {
 		submitResult.innerHTML = ""
 		event.preventDefault()
 		let switcher = "on"
-
 
 		for (let i = 0; i < inputs.length; i++) {
 			if (inputs[i].value.trim() == "" && i < 5) {
@@ -114,12 +107,8 @@ function addEventListeners(data) {
 			}
 		}
 
-
 		if (switcher === "on") {
 			document.querySelector(".產品編號").disabled = false
-			//			let typeValue = document.querySelector(".type").value || data.P_Type
-			//			type.innerHTML = ""
-			//			type.innerHTML += `<input type='text' class='產品種類'	name='type'	 value='${typeValue}'>`
 			event.currentTarget.submit()
 		}
 

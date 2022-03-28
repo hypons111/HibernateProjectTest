@@ -16,8 +16,8 @@
 	<table>
 		<tbody>
 			<tr>
-				<th><a href="insertform.jsp"><button>新增</button></a></th>
-				<th><button id="showAll">顯示全部</button></th>
+				<th><a href="insertform.jsp"><button>Add New Product</button></a></th>
+				<th><button id="showAll">Show All Product</button></th>
 			</tr>
 		</tbody>
 	</table>
@@ -25,41 +25,37 @@
 		<thead>
 			<tr>
 				<th><p id="totalNum"></p></th>
-				<th><button class="P_Type" id="sort">產品種類</button>
-					<form class="columnSearch">
-						<input id="type" class="columnSearchInput" type="text" placeholder="">
-						<button class="" type="submit">查詢</button>
-					</form></th>
-				<th><button class="P_ID" id="sort">產品編號</button>
-					<form class="columnSearch">
-						<input id="id" class="columnSearchInput" type="text" placeholder="">
-						<button class="" type="submit">查詢</button>
-					</form></th>
-				<th><button class="P_Name" id="sort">產品名稱</button>
-					<form class="columnSearch">
-						<input id="name" class="columnSearchInput" type="text"
-							placeholder="">
-						<button class="" type="submit">查詢</button>
-					</form></th>
-				<th><button class="P_Stock" id="sort">產品進貨量</button>
-					<form class="columnSearch">
-						<input id="stock" class="columnSearchInput" type="text"
-							placeholder="">
-						<button class="" type="submit">查詢</button>
-					</form></th>
-				<th><button class="P_Cost" id="sort">產品買價</button>
-					<form class="columnSearch">
-						<input id="cost" class="columnSearchInput" type="text"
-							placeholder="">
-						<button class="" type="submit">查詢</button>
-					</form></th>
-				<th><button class="P_Price" id="sort">產品售價</button>
-					<form class="columnSearch">
-						<input id="price" class="columnSearchInput" type="text"
-							placeholder="">
-						<button class="" type="submit">查詢</button>
-					</form></th>
-				<th>產品圖片</th>
+				<th><button class="Product_Type" id="sort">Type</button>
+					<!-- <form class="columnSearch"> -->
+						<input id="type" class="columnSearchInput" type="text" placeholder="" value="">
+						<!-- <button class="" type="submit">Search</button> -->
+					<!-- </form></th> -->
+				<th><button class="Product_ID" id="sort">ID</button>
+					<!-- <form class="columnSearch"> -->
+						<input id="id" class="columnSearchInput" type="text" placeholder="" value="">
+						<!-- <button class="" type="submit">Search</button> -->
+					<!-- </form></th> -->
+				<th><button class="Product_Name" id="sort">Name</button>
+					<!-- <form class="columnSearch"> -->
+						<input id="name" class="columnSearchInput" type="text" placeholder="" value="">
+						<!-- <button class="" type="submit">Search</button> -->
+					<!-- </form></th> -->
+				<th><button class="Product_Stock" id="sort">Stock</button>
+					<!-- <form class="columnSearch"> -->
+						<input id="stock" class="columnSearchInput" type="text" placeholder="" value="">
+						<!-- <button class="" type="submit">Search</button> -->
+					<!-- </form></th> -->
+				<th><button class="Product_Cost" id="sort">Buy</button>
+					<!-- <form class="columnSearch"> -->
+						<input id="cost" class="columnSearchInput" type="text"	placeholder="" value="">
+						<!-- <button class="" type="submit">Search</button> -->
+					<!-- </form></th> -->
+				<th><button class="Product_Price" id="sort">Sell</button>
+					<!-- <form class="columnSearch"> -->
+						<input id="price" class="columnSearchInput" type="text" placeholder="" value="">
+						<!-- <button class="" type="submit">Search</button> -->
+					<!-- </form></th> -->
+				<th>Image</th>
 			</tr>
 
 		</thead>

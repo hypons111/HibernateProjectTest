@@ -15,35 +15,35 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-@Entity @Table(name = "Product")
+@Entity @Table(name = "product")
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id @Column(name = "P_ID")
+	@Id @Column(name = "product_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int P_ID;
+	private int product_ID;
 	
-	@Column(name = "P_Type")
-	private String P_Type;
+	@Column(name = "product_Type")
+	private String product_Type;
 	
-	@Column(name = "P_Name")
-	private String P_Name;
+	@Column(name = "product_Name")
+	private String product_Name;
 	
-	@Column(name = "P_Stock")
-	private int P_Stock;
+	@Column(name = "product_Stock")
+	private int product_Stock;
 
-	@Column(name = "P_Cost")
-	private double P_Cost;
+	@Column(name = "product_Cost")
+	private double product_Cost;
 	
-	@Column(name = "P_Price")
-	private double P_Price;
+	@Column(name = "product_Price")
+	private double product_Price;
 	
-	@Column(name = "P_Image")
-	private String P_Image;
+	@Column(name = "product_Image")
+	private String product_Image;
 	
-	@Column(name = "P_Description")
-	private String P_Description;
+	@Column(name = "product_Description")
+	private String product_Description;
 
 //	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product")
 //	private Set<OrderItem> stockTransactions = new HashSet<>();
@@ -53,89 +53,81 @@ public class Product implements Serializable {
 
 	
 	public Product(int id, String name, String type, int stock, double cost, double price, String image, String description) {
-		this.P_ID = id;
-		this.P_Type = type;
-	    this.P_Name = name;
-	    this.P_Stock = stock;
-	    this.P_Cost = cost;
-	    this.P_Price = price;
-	    this.P_Image = image;
-	    this.P_Description =  description;
+		this.product_ID = id;
+		this.product_Type = type;
+	    this.product_Name = name;
+	    this.product_Stock = stock;
+	    this.product_Cost = cost;
+	    this.product_Price = price;
+	    this.product_Image = image;
+	    this.product_Description =  description;
 	}
 
 
-	public int getP_ID() {
-		return P_ID;
+	public int getProduct_ID() {
+		return product_ID;
 	}
 
-	public void setP_ID(int p_ID) {
-		P_ID = p_ID;
+	public void setProduct_ID(int product_ID) {
+		this.product_ID = product_ID;
 	}
 
-	public String getP_Type() {
-		return P_Type;
+	public String getProduct_Type() {
+		return product_Type;
 	}
 
-	public void setP_Type(String p_Type) {
-		P_Type = p_Type;
+	public void setProduct_Type(String product_Type) {
+		this.product_Type = product_Type;
 	}
 
-	public String getP_Name() {
-		return P_Name;
+	public String getProduct_Name() {
+		return product_Name;
 	}
 
-	public void setP_Name(String p_Name) {
-		P_Name = p_Name;
+	public void setProduct_Name(String product_Name) {
+		this.product_Name = product_Name;
 	}
 
-	public int getP_Stock() {
-		return P_Stock;
+	public int getProduct_Stock() {
+		return product_Stock;
 	}
 
-	public void setP_Stock(int p_Stock) {
-		P_Stock = p_Stock;
+	public void setProduct_Stock(int product_Stock) {
+		this.product_Stock = product_Stock;
 	}
 
-	public double getP_Cost() {
-		return P_Cost;
+	public double getProduct_Cost() {
+		return product_Cost;
 	}
 
-	public void setP_Cost(double p_Cost) {
-		P_Cost = p_Cost;
+	public void setProduct_Cost(double product_Cost) {
+		this.product_Cost = product_Cost;
 	}
 
-	public double getP_Price() {
-		return P_Price;
+	public double getProduct_Price() {
+		return product_Price;
 	}
 
-	public void setP_Price(double p_Price) {
-		P_Price = p_Price;
+	public void setProduct_Price(double product_Price) {
+		this.product_Price = product_Price;
 	}
 
-	public String getP_Image() {
-		return P_Image;
+	public String getProduct_Image() {
+		return product_Image;
 	}
 
-	public void setP_Image(String p_Image) {
-		P_Image = p_Image;
+	public void setProduct_Image(String product_Image) {
+		this.product_Image = product_Image;
 	}
 
-	public String getP_Description() {
-		return P_Description;
+	public String getProduct_Description() {
+		return product_Description;
 	}
 
-	public void setP_Description(String p_Description) {
-		P_Description = p_Description;
+	public void setProduct_Description(String product_Description) {
+		this.product_Description = product_Description;
 	}
 
-//	public ProductType getProductType() {
-//		return productType;
-//	}
-//
-//	public void setProductType(ProductType productType) {
-//		this.productType = productType;
-//	}
-	
 }
 	
 	
