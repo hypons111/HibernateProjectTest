@@ -40,8 +40,8 @@ public class AdminProductInsert extends HttpServlet {
 		ProductService productService = new ProductService(session);
 		ProductTypeService productTypeService = new ProductTypeService(session);
 
-		String name = request.getParameter("name");
-		String type = request.getParameter("type").toUpperCase();
+		String name = request.getParameter("name").trim();
+		String type = request.getParameter("type").trim().substring(0, 1).toUpperCase() + request.getParameter("type").trim().toLowerCase().substring(1);
 		int stock = Integer.parseInt(request.getParameter("stock"));
 		double cost = Math.ceil(Double.parseDouble(request.getParameter("cost")) * 10.0) / 10.0;
 		double price = Math.ceil(Double.parseDouble(request.getParameter("price")) * 10.0) / 10.0;
