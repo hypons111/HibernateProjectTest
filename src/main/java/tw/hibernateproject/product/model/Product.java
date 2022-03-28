@@ -1,13 +1,19 @@
 package tw.hibernateproject.product.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity @Table(name = "Product")
 public class Product implements Serializable {
@@ -39,12 +45,13 @@ public class Product implements Serializable {
 	@Column(name = "P_Description")
 	private String P_Description;
 
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "PT_ID")
-//	private ProductType productType;
+//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product")
+//	private Set<OrderItem> stockTransactions = new HashSet<>();
+
 	
 	public Product() {}
 
+	
 	public Product(int id, String name, String type, int stock, double cost, double price, String image, String description) {
 		this.P_ID = id;
 		this.P_Type = type;

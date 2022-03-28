@@ -14,6 +14,7 @@
         <mapping class="tw.hibernateproject.member.model.Member" />
         <mapping class="tw.hibernateproject.product.model.Product" />
         <mapping class="tw.hibernateproject.product.model.ProductType" />
+
         
     </session-factory>
 </hibernate-configuration>
