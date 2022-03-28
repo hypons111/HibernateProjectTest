@@ -21,17 +21,17 @@ public class AdminProductTypeIndex extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("ProductType Insert Servlet");
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
 		
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
 
-		// 把 hibernate 的方法包在 DAO 裡面再包在 service 裡面
 		ProductTypeService productTypeService = new ProductTypeService(session);
 		List<ProductType> productTypeResultList = productTypeService.selectAll();
+		PrintWriter out = response.getWriter();
 				
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(productTypeResultList);

@@ -18,13 +18,17 @@ public class AdminProductDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("Product Delete Servlet");
+		
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
 		int id = Integer.parseInt(request.getParameter("P_ID"));
 		
-		// 把 hibernate 的方法包在 DAO 裡面再包在 service 裡面
-		ProductService service = new ProductService(session);
-		service.delete(id);
+
+		ProductService productService = new ProductService(session);
+		productService.delete(id);
+		
+		
 		response.sendRedirect("index.jsp");
 	}
 	
