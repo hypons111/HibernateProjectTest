@@ -1,1 +1,2 @@
-# 資策會 Hibernate 作業
+# iSpanHibernate
+資策會 Hibernate 作業
