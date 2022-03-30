@@ -25,8 +25,8 @@ axios
 	.catch(error => console.log(error));
 
 
+// 安裝排序 listener
 function addSortEventListeners() {
-	// 安裝排序 listener
 	sorts.forEach(sort => {
 		sort.addEventListener('click', (event) => {
 			event.preventDefault()
@@ -51,8 +51,8 @@ function addSortEventListeners() {
 	})
 }
 
+// 安裝搜尋 listener
 function addSearchEventListeners() {
-	// 安裝搜尋 listener
 	columnSearchInputs.forEach(columnSearchInput => {
 		columnSearchInput.addEventListener("keyup", (event) => {
 			showData(ultraFuckingSearch())
@@ -60,7 +60,7 @@ function addSearchEventListeners() {
 	})
 }
 
-//show all data button listener
+//安裝 show all product listener
 document.querySelector('#showAll').addEventListener('click', () => {
 	showData(rawData)
 	columnSearchInputs.forEach(columnSearchInput => {
@@ -68,7 +68,7 @@ document.querySelector('#showAll').addEventListener('click', () => {
 	})
 })
 
-// show data
+
 function showData(data) {
 	currentData = []
 	currentData.push(...data)
@@ -91,9 +91,8 @@ function showData(data) {
 
 function ultraFuckingSearch() {
 	let tempData = rawData
-	const KEY = ["", "Product_ID", "", "Product_Stock", "Product_Cost", "Product_Price",]
+	const KEY = ["", "product_ID", "", "product_Stock", "product_Cost", "product_Price"]
 	for (let k = 0; k < columnSearchInputs.length; k++) {
-
 		if (columnSearchInputs[k].value !== "") {
 			if (k === 0) {
 				tempData = tempData.filter(product => product.product_Type.toLowerCase().includes(columnSearchInputs[0].value))
